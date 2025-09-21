@@ -10,13 +10,13 @@ export default function SubscribeSuccess() {
   useEffect(() => {
     const run = async () => {
       try {
-        const { data } = await supabase.auth.getSession()
-        const idToken = data?.session?.access_token
+        const { data: sessionData } = await supabase.auth.getSession()
+        const idToken = sessionData?.session?.access_token
         const base = import.meta.env.VITE_PUBLIC_BASE_URL || ''
         const res = await fetch(`${base}/api/bootstrap`, { headers: { Authorization: `Bearer ${idToken}` } })
-        const data = await res.json().catch(() => ({}))
-        if (!res.ok) throw new Error(data.error || 'Falha ao validar assinatura')
-        if (data.subscription?.active) {
+        const payload = await res.json().catch(() => ({}))
+        if (!res.ok) throw new Error(payload.error || 'Falha ao validar assinatura')
+        if (payload.subscription?.active) {
           window.location.assign('/dashboard')
           return
         }
