@@ -3,8 +3,6 @@ import express from 'express'
 import cors from 'cors'
 import pino from 'pino'
 import net from 'node:net'
-import Stripe from 'stripe'
-import { createBillingRouter } from './routes/billing.js'
 
 const app = express()
 const logger = pino({ level: process.env.LOG_LEVEL || 'info' })
@@ -29,20 +27,7 @@ if (ALLOW_ORIGINS.length > 0) {
 }
 // JSON for regular routes
 app.use('/api', express.json())
-
-// Optional Stripe integration (enabled when STRIPE_SECRET_KEY is set)
-let stripe = null
-if (process.env.STRIPE_SECRET_KEY) {
-  try {
-    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2024-06-20' })
-    app.use('/api', createBillingRouter({ stripe, appUrl: PUBLIC_BASE_URL }))
-    // eslint-disable-next-line no-console
-    console.log('[server] Stripe billing routes enabled')
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error('[server] Failed to initialize Stripe:', e?.message || e)
-  }
-}
+// Stripe removido — cobrança via Hotmart (widget no cliente)
 
 app.get('/api/health', (req, res) => {
   res.json({ ok: true })

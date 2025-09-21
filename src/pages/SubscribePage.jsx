@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 
 export default function SubscribePage() {
-  const href = (import.meta && import.meta.env && (import.meta.env.VITE_STRIPE_PAYMENT_LINK || import.meta.env.VITE_HOTMART_PAY_URL))
-    || 'https://buy.stripe.com/test_5kQ7sM5oXdJq9PZ2TQ'
+  const href = (import.meta && import.meta.env && import.meta.env.VITE_HOTMART_PAY_URL) || 'https://pay.hotmart.com/Q102005462K?checkoutMode=2'
 
   useEffect(() => {
-    // Redirect automatically to payment. Keep page as fallback.
-    try { window.location.assign(href) } catch {}
-  }, [href])
+    const s = document.createElement('script'); s.src = 'https://static.hotmart.com/checkout/widget.min.js'; document.head.appendChild(s)
+    const l = document.createElement('link'); l.rel='stylesheet'; l.href='https://static.hotmart.com/css/hotmart-fb.min.css'; document.head.appendChild(l)
+    return () => { try { document.head.removeChild(s); document.head.removeChild(l) } catch {} }
+  }, [])
 
   return (
     <div className="auth-page">
@@ -19,8 +19,8 @@ export default function SubscribePage() {
             </span>
             <h1 id="subscribeTitle" style={{ margin: 0 }}>Assinatura necessária</h1>
           </div>
-          <p className="text-soft" style={{ marginTop: -8 }}>Redirecionando para o Stripe. Se não abrir, use o botão abaixo.</p>
-          <a href={href} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Abrir checkout Stripe</a>
+          <p className="text-soft" style={{ marginTop: -8 }}>Plano mensal R$ 9,90 via Hotmart.</p>
+          <a onClick={(e)=>e.preventDefault()} href={href} target="_blank" rel="noopener noreferrer" className="hotmart-fb hotmart__button-checkout"><img alt="Comprar" src='https://static.hotmart.com/img/btn-buy-green.png' /></a>
           <div className="grid" style={{ gap: 12, marginTop: 16 }}><a className="btn btn-secondary" href="/">Voltar</a></div>
         </main>
       </div>
