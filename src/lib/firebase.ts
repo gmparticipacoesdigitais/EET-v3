@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
-  GoogleAuthProvider,
   setPersistence,
   browserLocalPersistence,
   inMemoryPersistence
@@ -28,10 +27,6 @@ export async function ensureAuthPersistence(): Promise<void> {
   }
 }
 
-/** Provider with locale + account chooser */
-export const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account', hl: 'pt-BR' });
-
 /** Utility for debugging env mistakes early */
 export function assertEnv(): void {
   const missing: string[] = [];
@@ -43,4 +38,3 @@ export function assertEnv(): void {
     throw new Error('Missing Firebase env vars: ' + missing.join(', '));
   }
 }
-

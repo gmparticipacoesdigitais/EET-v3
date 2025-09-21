@@ -29,6 +29,12 @@ export default function AuthPage() {
     if (user) navigate('/')
   }, [user, navigate])
 
+  const handleModeChange = (nextMode) => {
+    if (nextMode === mode) return
+    setMode(nextMode)
+    setError('')
+  }
+
   const onChange = (event) => {
     const { name, value } = event.target
     setForm((prev) => ({ ...prev, [name]: value }))
@@ -43,12 +49,12 @@ export default function AuthPage() {
         await login(form.email, form.password)
       } else {
         if (!form.name.trim()) throw new Error('Informe seu nome completo')
-        if (form.password.length < 8) throw new Error('A senha deve ter no mínimo 8 caracteres')
+        if (form.password.length < 8) throw new Error('A senha deve ter no minimo 8 caracteres')
         await register({ email: form.email, password: form.password, name: form.name.trim(), cpfCnpj: form.cpfCnpj, phone: form.phone })
       }
       navigate('/dashboard')
     } catch (err) {
-      setError(err.message || 'Não foi possível autenticar. Tente novamente.')
+      setError(err.message || 'Nao foi possivel autenticar. Tente novamente.')
     } finally {
       setLoading(false)
     }
@@ -68,25 +74,46 @@ export default function AuthPage() {
   }
 
   const handleWhatsAppReset = () => {
-    const txt = encodeURIComponent(`Olá! Quero recuperar minha senha no app. Meu e-mail: ${form.email || ''}`)
-    window.open(`https://api.whatsapp.com/send?text=${txt}`, '_blank', 'noopener,noreferrer')
+    const message = encodeURIComponent(`Ola! Preciso de ajuda com o acesso. Meu e-mail: ${form.email || 'sem e-mail informado'}`)
+    window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank', 'noopener,noreferrer')
   }
+
+  const modeCopy = mode === 'login'
+    ? {
+        headline: 'Entrar na sua conta',
+        subtitle: 'Use suas credenciais para acessar os calculos e provisoes em andamento.',
+        action: 'Entrar agora',
+        switchLabel: 'Nao tem conta ainda? ',
+        switchAction: 'Criar acesso'
+      }
+    : {
+        headline: 'Criar uma nova conta',
+        subtitle: 'Cadastre os dados da empresa para monitorar encargos e colaboradores.',
+        action: 'Criar conta',
+        switchLabel: 'Ja possui login? ',
+        switchAction: 'Fazer login'
+      }
 
   return (
     <div className="auth-page">
       <div className="auth-shell">
         <section className="auth-hero" aria-hidden="true">
-          <span className="auth-hero__badge">Calculadora trabalhista</span>
-          <h1>Organize encargos com confiança</h1>
-          <p>Acompanhe provisões e encargos em tempo real, com estimativas precisas e colaboração segura.</p>
+          <span className="auth-hero__badge">Operacao confiavel</span>
+          <h1>Encargos sob controle total</h1>
+          <p>Centralize previsoes de folha, acompanhe encargos legais e compartilhe relat�rios em minutos.</p>
+          <ul className="auth-hero__highlights">
+            <li>Visao mensal de encargos e provisoes</li>
+            <li>Alertas para vencimentos criticos</li>
+            <li>Exportacao pronta para contabilidade</li>
+          </ul>
         </section>
 
         <main className="auth-card" role="main" aria-labelledby="authTitle">
           <header className="auth-card__header">
             <span className="auth-card__icon" aria-hidden="true" />
             <div>
-              <h2 id="authTitle">{mode === 'login' ? 'Entrar na sua conta' : 'Criar uma nova conta'}</h2>
-              <p className="auth-card__subtitle">Use suas credenciais corporativas para acessar seus cálculos.</p>
+              <h2 id="authTitle">{modeCopy.headline}</h2>
+              <p className="auth-card__subtitle">{modeCopy.subtitle}</p>
             </div>
           </header>
 
@@ -96,13 +123,13 @@ export default function AuthPage() {
             </div>
           )}
 
-          <div className="auth-tabs" role="tablist" aria-label="Selecione o modo de acesso">
+          <div className="auth-tabs" role="tablist" aria-label="Alterar modo de acesso">
             <button
               type="button"
               role="tab"
               aria-selected={mode === 'login'}
               className={`auth-tab ${mode === 'login' ? 'is-active' : ''}`}
-              onClick={() => setMode('login')}
+              onClick={() => handleModeChange('login')}
             >
               Entrar
             </button>
@@ -111,7 +138,7 @@ export default function AuthPage() {
               role="tab"
               aria-selected={mode === 'signup'}
               className={`auth-tab ${mode === 'signup' ? 'is-active' : ''}`}
-              onClick={() => setMode('signup')}
+              onClick={() => handleModeChange('signup')}
             >
               Criar conta
             </button>
@@ -120,9 +147,16 @@ export default function AuthPage() {
             </button>
           </div>
 
+          <p className="auth-caption">
+            {modeCopy.switchLabel}
+            <button type="button" className="auth-link" onClick={() => handleModeChange(mode === 'login' ? 'signup' : 'login')}>
+              {modeCopy.switchAction}
+            </button>
+          </p>
+
           <form className="auth-form" onSubmit={handleSubmit} noValidate>
             {mode === 'signup' && (
-              <fieldset className="auth-form__group" aria-label="Dados pessoais">
+              <fieldset className="auth-form__group" aria-label="Dados da empresa">
                 <Input
                   label="Nome completo"
                   name="name"
@@ -137,7 +171,7 @@ export default function AuthPage() {
                   name="cpfCnpj"
                   value={form.cpfCnpj}
                   onChange={onChange}
-                  placeholder="Somente números"
+                  placeholder="Somente numeros"
                   autoComplete="off"
                 />
                 <Input
@@ -145,15 +179,15 @@ export default function AuthPage() {
                   name="phone"
                   value={form.phone}
                   onChange={onChange}
-                  placeholder="DDD + número"
+                  placeholder="DDD + numero"
                   autoComplete="tel"
                 />
               </fieldset>
             )}
 
-            <fieldset className="auth-form__group" aria-label="Credenciais de acesso">
+            <fieldset className="auth-form__group" aria-label="Credenciais">
               <Input
-                label="E-mail corporativo"
+                label="E-mail"
                 name="email"
                 value={form.email}
                 onChange={onChange}
@@ -168,43 +202,52 @@ export default function AuthPage() {
                 value={form.password}
                 onChange={onChange}
                 type="password"
-                placeholder="No mínimo 8 caracteres"
+                placeholder="No minimo 8 caracteres"
                 autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
                 required
               />
-              <label className="auth-remember">
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(event) => setRememberMe(event.target.checked)}
-                />
-                <span>Manter sessão ativa neste dispositivo</span>
-              </label>
+              {mode === 'login' && (
+                <label className="auth-remember">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(event) => setRememberMe(event.target.checked)}
+                  />
+                  <span>Manter sessao ativa neste dispositivo</span>
+                </label>
+              )}
             </fieldset>
 
             <div className="auth-actions">
               <Button type="submit" variant="primary" disabled={loading} aria-live="polite">
-                {loading ? 'Aguarde...' : 'Continuar'}
+                {loading ? 'Aguarde...' : modeCopy.action}
               </Button>
               <Button type="button" variant="secondary" onClick={handleWhatsAppReset}>
-                Recuperar via WhatsApp
+                Falar com suporte
               </Button>
             </div>
           </form>
 
-          <div className="auth-divider" role="separator" aria-label="ou" />
-
-          <div className="auth-alt">
-            <Button type="button" variant="secondary" className="btn-google" onClick={() => setError('Login com Google ainda não está disponível.')}>Entrar com Google</Button>
-            <button type="button" className="auth-link" onClick={() => setError('Link mágico por e-mail disponível em breve.')}>Usar link mágico por e-mail</button>
-          </div>
+          <section className="auth-support" aria-live="polite">
+            <div>
+              <span className="auth-support__badge">Suporte humano</span>
+              <h3>Equipe pronta para destravar acessos</h3>
+              <p>Atendimento em horario comercial com retorno medio de 30 minutos.</p>
+            </div>
+            <div className="auth-support__actions">
+              <Button type="button" variant="ghost" onClick={handleWhatsAppReset}>
+                Abrir WhatsApp
+              </Button>
+              <button type="button" className="auth-link" onClick={() => setError('Envio por e-mail disponivel em breve.')}>Receber por e-mail</button>
+            </div>
+          </section>
 
           <footer className="auth-footer">
             <div className="auth-footer__links">
-              <button type="button" className="auth-link" onClick={() => setError('Função em desenvolvimento.')}>Esqueci minha senha</button>
-              <span aria-hidden="true">·</span>
-              <a href="#" className="auth-link">Política de privacidade</a>
-              <span aria-hidden="true">·</span>
+              <button type="button" className="auth-link" onClick={() => setError('Funcao em desenvolvimento.')}>Esqueci minha senha</button>
+              <span aria-hidden="true">|</span>
+              <a href="#" className="auth-link">Politica de privacidade</a>
+              <span aria-hidden="true">|</span>
               <a href="#" className="auth-link">Termos de uso</a>
             </div>
           </footer>
@@ -214,4 +257,3 @@ export default function AuthPage() {
     </div>
   )
 }
-

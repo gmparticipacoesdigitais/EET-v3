@@ -1,5 +1,5 @@
 import { initializeApp, getApps, getApp } from 'firebase/app'
-import { getAuth, GoogleAuthProvider, connectAuthEmulator } from 'firebase/auth'
+import { getAuth, connectAuthEmulator } from 'firebase/auth'
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore'
 import { firebaseConfig } from './firebaseConfig'
 
@@ -55,8 +55,6 @@ if (getApps().length) {
 }
 
 export const auth = app ? getAuth(app) : null as any
-export const googleProvider = new GoogleAuthProvider()
-try { googleProvider.setCustomParameters({ prompt: 'select_account' }) } catch {}
 export const db = app ? getFirestore(app) : null as any
 
 export { isFirebaseConfigured, missingFirebaseKeys }
@@ -73,3 +71,4 @@ try {
     console.log('[Firebase] Conectado aos emuladores (auth:9099, firestore:8081)')
   }
 } catch {}
+

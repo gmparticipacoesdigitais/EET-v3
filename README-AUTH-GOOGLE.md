@@ -1,4 +1,4 @@
-Google Login — Firebase Auth v9 (popup → redirect fallback)
+# Google Auth (legacy)\n\n> [!NOTE]\n> Fluxo de login com Google descontinuado na interface atual (setembro/2025). Este guia permanece apenas como historico.\n\nGoogle Login — Firebase Auth v9 (popup → redirect fallback)
 
 Resumo
 - Login com Google restaurado via Firebase Auth (Web v9 modular).
@@ -70,4 +70,5 @@ Resumo
 - origin_mismatch / redirect_uri_mismatch: cheque o host/porta atual e os domínios autorizados no Firebase Auth (e GCP se usando GIS direto).
 - idpiframe_initialization_failed: inclua `localhost`/`127.0.0.1` nos Authorized domains.
 - Popup bloqueado: use o redirect automático (já implementado) ou disponibilize um botão “Tentar via redirecionamento”.
+
 

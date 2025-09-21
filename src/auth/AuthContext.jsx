@@ -35,10 +35,9 @@ export function AuthProvider({ children }) {
     setUser({ uid: u.uid, email: u.email })
     return u
   }
-  const loginWithGoogle = async () => { throw new Error('Login com Google desativado') }
   const logout = () => { return logoutSvc() }
 
-  const value = useMemo(() => ({ user, claims, loading, register, login, loginWithGoogle, logout }), [user, claims, loading])
+  const value = useMemo(() => ({ user, claims, loading, register, login, logout }), [user, claims, loading])
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
@@ -47,3 +46,4 @@ export function useAuth() {
   if (!ctx) throw new Error('useAuth must be used within AuthProvider')
   return ctx
 }
+

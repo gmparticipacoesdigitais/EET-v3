@@ -187,12 +187,18 @@ export default function FuncionariosPage() {
       const saida = parseYMD(f.dataSaida)
       return !saida || saida >= new Date()
     }).length
+    const folha = globalTotals.periodo
+    const encargos = globalTotals.encargos
+    const provisoes = globalTotals.provisoes
     return {
       headcount: total,
       ativos,
-      folha: globalTotals.periodo,
-      encargos: globalTotals.encargos,
-      provisoes: globalTotals.provisoes,
+      folha,
+      encargos,
+      provisoes,
+      mediaFolha: total ? folha / total : 0,
+      mediaEncargos: total ? encargos / total : 0,
+      mediaProvisoes: total ? provisoes / total : 0,
     }
   }, [filteredFuncionarios, globalTotals])
 
@@ -217,13 +223,28 @@ export default function FuncionariosPage() {
   return (
     <div className="employees-page">
       <header className="employees-hero">
-        <div>
+        <div className="employees-hero__copy">
+          <span className="employees-hero__badge">Visão operacional</span>
           <h1>Funcionários e encargos</h1>
           <p>Visualize despesas trabalhistas por competência, ajuste políticas de provisão e mantenha sua folha sempre pronta.</p>
+          <ul className="employees-hero__highlights">
+            <li>
+              <strong>{summaryMetrics.ativos}</strong>
+              <span>Ativos</span>
+            </li>
+            <li>
+              <strong>{formatCurrency(summaryMetrics.folha)}</strong>
+              <span>Folha estimada</span>
+            </li>
+            <li>
+              <strong>{formatCurrency(summaryMetrics.encargos + summaryMetrics.provisoes)}</strong>
+              <span>Encargos + provisões</span>
+            </li>
+          </ul>
         </div>
         <div className="employees-hero__actions">
           <Button variant="secondary" onClick={() => window.alert('Exportação disponível em breve.')}>Exportar CSV</Button>
-          <Button variant="primary" onClick={handleScrollToForm}>+ Novo funcionário</Button>
+          <Button variant="primary" onClick={handleScrollToForm}>Adicionar funcionário</Button>
         </div>
       </header>
 
@@ -231,22 +252,22 @@ export default function FuncionariosPage() {
         <article className="summary-card">
           <span className="summary-card__label">Headcount ativo</span>
           <strong className="summary-card__value">{summaryMetrics.ativos}</strong>
-          <span className="summary-card__meta">{summaryMetrics.headcount} no total</span>
+          <span className="summary-card__meta">Total: {summaryMetrics.headcount}</span>
         </article>
         <article className="summary-card">
           <span className="summary-card__label">Folha estimada</span>
           <strong className="summary-card__value">{formatCurrency(summaryMetrics.folha)}</strong>
-          <span className="summary-card__meta">Somatória dos salários provisionados</span>
+          <span className="summary-card__meta">Média por colaborador: {formatCurrency(summaryMetrics.mediaFolha)}</span>
         </article>
         <article className="summary-card">
           <span className="summary-card__label">Encargos</span>
           <strong className="summary-card__value">{formatCurrency(summaryMetrics.encargos)}</strong>
-          <span className="summary-card__meta">INSS, FGTS, terceiros, RAT</span>
+          <span className="summary-card__meta">Média: {formatCurrency(summaryMetrics.mediaEncargos)}</span>
         </article>
         <article className="summary-card">
           <span className="summary-card__label">Provisões</span>
           <strong className="summary-card__value">{formatCurrency(summaryMetrics.provisoes)}</strong>
-          <span className="summary-card__meta">13º, férias, 1/3 e FGTS sobre provisões</span>
+          <span className="summary-card__meta">Média: {formatCurrency(summaryMetrics.mediaProvisoes)}</span>
         </article>
       </section>
 
@@ -273,6 +294,7 @@ export default function FuncionariosPage() {
             <option>Últimos 12 meses</option>
           </select>
         </div>
+        <p className="toolbar-note">Filtros por setor e período chegam em breve.</p>
       </section>
 
       <section className="employees-panel" aria-label="Visão consolidada">
@@ -306,9 +328,9 @@ export default function FuncionariosPage() {
             </Select>
             <Input label={labelCpfCnpj(formData.cpfCnpj)} name="cpfCnpj" value={formData.cpfCnpj} onChange={handleInputChange} placeholder="Apenas números" error={errors.cpfCnpj} />
               <div className="employees-form__footer">
-                <div className="badge">Entrada: {fmtDMY(formData.dataEntrada) || '—'}</div>
-                <div className="badge">Saída para cálculo: {fmtDMY(formData.dataSaida) || '—'}</div>
-                <Button type="submit" variant="primary">Adicionar</Button>
+                <div className="badge">Entrada: {fmtDMY(formData.dataEntrada) || '--'}</div>
+                <div className="badge">Cálculo até: {fmtDMY(formData.dataSaida) || '--'}</div>
+                <Button type="submit" variant="primary">Salvar colaborador</Button>
               </div>
             </form>
             <div className="employees-policy" role="group" aria-label="Configuração de cálculo">

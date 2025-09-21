@@ -17,7 +17,7 @@ export default function SubscribePage() {
             <h1 id="subscribeTitle" style={{ margin: 0 }}>Assinatura necessária</h1>
           </div>
           <p className="text-soft" style={{ marginTop: -8 }}>Plano mensal R$ 4,99 via Hotmart.</p>
-          <a onClick={(e)=>e.preventDefault()} href={href} className="hotmart-fb hotmart__button-checkout"><img alt="Comprar" src='https://static.hotmart.com/img/btn-buy-green.png' /></a>
+          <a href={href} target="_blank" rel="noopener noreferrer" className="hotmart-fb hotmart__button-checkout"><img alt="Comprar" src='https://static.hotmart.com/img/btn-buy-green.png' /></a>
           <div className="grid" style={{ gap: 12, marginTop: 16 }}><a className="btn btn-secondary" href="/">Voltar</a></div>
         </main>
       </div>

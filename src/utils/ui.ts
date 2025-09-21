@@ -128,10 +128,8 @@ export class LoadingManager {
     const buttonSelectors: Record<string, string> = {
       login: '#login-form .btn-primary',
       register: '#register-form .btn-primary',
-      google: '#btn-google',
       dev: '#btn-dev-login'
     };
-
     const selector = buttonSelectors[context];
     if (!selector) return;
 
@@ -162,8 +160,7 @@ export class LoadingManager {
     // Reset all buttons
     const buttonSelectors = [
       '#login-form .btn-primary',
-      '#register-form .btn-primary', 
-      '#btn-google',
+      '#register-form .btn-primary',
       '#btn-dev-login'
     ];
 
@@ -350,4 +347,6 @@ export class RedirectManager {
     }, delay);
   }
 }
+
+
 

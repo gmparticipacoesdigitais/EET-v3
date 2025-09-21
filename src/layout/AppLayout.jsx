@@ -2,7 +2,6 @@ import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import Header from '../components/Header.jsx'
 import ToastStack from '../components/Toast.jsx'
 import Sidebar from '../components/Sidebar.jsx'
-import Hero from '../components/Hero.jsx'
 import { createContext, useContext, useMemo, useState, useEffect } from 'react'
 import { useAuth } from '../auth/AuthContext'
 import { subscribeEmployees } from '../data/employees'
@@ -40,7 +39,6 @@ export default function AppLayout() {
           <Sidebar />
         </aside>
         <main className="app-main" aria-live="polite">
-          <Hero />
           <Outlet context={{ funcionarios, setFuncionarios, route: location.pathname }} />
         </main>
       </div>
