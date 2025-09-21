@@ -23,15 +23,22 @@ export function createBillingHelpers({ stripe }) {
   }
 
   const getSubscriptionStatus = async ({ customerId }) => {
-    // Prefer to match by price; fallback to product
     const targetPrice = process.env.STRIPE_PRICE_ID || null
     const targetProduct = process.env.STRIPE_PRODUCT_ID || null
-    // List all subscriptions for this customer
     const subs = await stripe.subscriptions.list({ customer: customerId, status: 'all', expand: ['data.items'] })
     let active = false
     let status = 'none'
+
+    // If no target filter configured, consider any active/trialing subscription valid
+    if (!targetPrice && !targetProduct) {
+      for (const s of subs.data) {
+        if (s.status === 'active' || s.status === 'trialing') { active = true; status = s.status; break }
+      }
+      return { active, status }
+    }
+
+    // Otherwise, match by configured price/product
     for (const s of subs.data) {
-      // Check any item matches configured price or product
       const items = s.items?.data || []
       const matches = items.some((it) => {
         const price = it.price

@@ -1,4 +1,18 @@
 import { getAuthAdmin } from '../firebaseAdmin.js'
+import { createRemoteJWKSet, jwtVerify } from 'jose'
+
+let supabaseJwks = null
+function getSupabaseJWKS() {
+  const url = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL
+  if (!url) return null
+  try {
+    const jwksUrl = new URL('/auth/v1/keys', url).toString()
+    supabaseJwks = createRemoteJWKSet(new URL(jwksUrl))
+    return supabaseJwks
+  } catch {
+    return null
+  }
+}
 
 // Verify Firebase ID token passed via Authorization: Bearer <token>
 export async function verifyIdToken(req, res, next) {
@@ -6,16 +20,22 @@ export async function verifyIdToken(req, res, next) {
     const header = req.headers.authorization || ''
     const [, token] = header.split(' ')
     if (!token) return res.status(401).json({ code: 'AUTH_REQUIRED', error: 'Missing bearer token' })
-    const decoded = await getAuthAdmin().verifyIdToken(token)
-    const tenantId = decoded.tenantId || decoded.tenant || decoded.tenant_id || decoded.tenant_id || decoded.tid || decoded.claims?.tenantId || decoded?.tenantId
-    const roles = decoded.roles || decoded.claims?.roles || decoded['https://roles'] || null
-    req.auth = {
-      uid: decoded.uid,
-      email: decoded.email || null,
-      tenantId: tenantId || null,
-      roles: roles || null,
-      raw: decoded,
-    }
+    // Try Firebase first
+    try {
+      const decoded = await getAuthAdmin().verifyIdToken(token)
+      const tenantId = decoded.tenantId || decoded.tenant || decoded.tenant_id || decoded.tid || decoded.claims?.tenantId || null
+      const roles = decoded.roles || decoded.claims?.roles || decoded['https://roles'] || null
+      req.auth = { uid: decoded.uid, email: decoded.email || null, tenantId, roles: roles || null, raw: decoded }
+      return next()
+    } catch {}
+
+    // Fallback: verify Supabase JWT via JWKS
+    const jwks = supabaseJwks || getSupabaseJWKS()
+    if (!jwks) return res.status(401).json({ code: 'AUTH_INVALID', error: 'No verifier available' })
+    const { payload } = await jwtVerify(token, jwks)
+    const uid = payload.sub
+    const email = payload.email || null
+    req.auth = { uid, email, tenantId: null, roles: null, raw: payload }
     return next()
   } catch (e) {
     return res.status(401).json({ code: 'AUTH_INVALID', error: 'Invalid or expired token' })
