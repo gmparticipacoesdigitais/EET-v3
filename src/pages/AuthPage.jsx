@@ -14,7 +14,6 @@ export default function AuthPage() {
   const navigate = useNavigate()
   const [mode, setMode] = useState('login')
   const [form, setForm] = useState({ email: '', password: '', name: '', cpfCnpj: '', phone: '' })
-  const [rememberMe, setRememberMe] = useState(true)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const errRef = useRef(null)
@@ -110,7 +109,6 @@ export default function AuthPage() {
 
         <main className="auth-card" role="main" aria-labelledby="authTitle">
           <header className="auth-card__header">
-            <span className="auth-card__icon" aria-hidden="true" />
             <div>
               <h2 id="authTitle">{modeCopy.headline}</h2>
               <p className="auth-card__subtitle">{modeCopy.subtitle}</p>
@@ -142,9 +140,7 @@ export default function AuthPage() {
             >
               Criar conta
             </button>
-            <button type="button" className="auth-tab auth-tab--ghost" onClick={handleDevLogin}>
-              Entrar Dev
-            </button>
+            {/* Dev login ocultado: removida a aba/acao explicita */}
           </div>
 
           <p className="auth-caption">
@@ -206,16 +202,7 @@ export default function AuthPage() {
                 autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
                 required
               />
-              {mode === 'login' && (
-                <label className="auth-remember">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(event) => setRememberMe(event.target.checked)}
-                  />
-                  <span>Manter sessao ativa neste dispositivo</span>
-                </label>
-              )}
+              {/* Opção de manter sessão ativa removida */}
             </fieldset>
 
             <div className="auth-actions">
@@ -244,11 +231,7 @@ export default function AuthPage() {
 
           <footer className="auth-footer">
             <div className="auth-footer__links">
-              <button type="button" className="auth-link" onClick={() => setError('Funcao em desenvolvimento.')}>Esqueci minha senha</button>
-              <span aria-hidden="true">|</span>
-              <a href="#" className="auth-link">Politica de privacidade</a>
-              <span aria-hidden="true">|</span>
-              <a href="#" className="auth-link">Termos de uso</a>
+              Contato: <a href="mailto:contato@simulador.auditoriaemfoco.com" className="auth-link">contato@simulador.auditoriaemfoco.com</a>
             </div>
           </footer>
         </main>

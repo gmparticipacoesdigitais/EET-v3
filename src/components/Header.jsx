@@ -4,8 +4,8 @@ import { useAuth } from '../auth/AuthContext'
 export default function Header({ onToggleSidebar }) {
   const { user, logout } = useAuth()
   return (
-    <div className="flex items-center justify-between h-full">
-      <div className="flex items-center gap-3">
+    <div className="header-bar">
+      <div className="header-left">
         <span className="inline-flex h-8 w-8 items-center justify-center rounded-md" aria-hidden>
           <span className="h-full w-full rounded-md" style={{
             background: 'radial-gradient(120% 120% at 20% -10%, rgba(167,139,250,.6), transparent 50%), linear-gradient(135deg, rgba(139,92,246,.9), rgba(14,165,233,.8))'
@@ -15,7 +15,7 @@ export default function Header({ onToggleSidebar }) {
           <h1 className="text-lg font-semibold" style={{ color: 'var(--color-ink)', margin: 0 }}>Encargos Trabalhistas</h1>
         </div>
       </div>
-      <div className="flex items-center gap-8">
+      <div className="header-right">
         <button type="button" className="btn btn-secondary" onClick={onToggleSidebar} aria-label="Abrir menu">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
           Menu

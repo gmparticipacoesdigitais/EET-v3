@@ -316,6 +316,14 @@ body {
   display: block;
 }
 
+/* Footer for contact info on login page */
+.login-footer {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--login-muted);
+}
+
 @media (max-width: 640px) {
   body {
     padding: 0;

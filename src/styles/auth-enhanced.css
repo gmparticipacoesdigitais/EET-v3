@@ -109,13 +109,7 @@
   gap: 18px;
 }
 
-.auth-card__icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.9), rgba(129, 140, 248, 0.75));
-  box-shadow: 0 18px 28px -20px rgba(79, 70, 229, 0.55);
-}
+/* auth-card__icon removido da tela de autenticação */
 
 .auth-card__header h2 {
   margin: 0;

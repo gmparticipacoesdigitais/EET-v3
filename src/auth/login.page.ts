@@ -59,10 +59,7 @@ class LoginPageManager {
 
     this.devBtn?.addEventListener('click', () => this.handleDevLogin())
 
-    const forgotPasswordBtn = document.querySelector('[data-action="forgot-password"]') as HTMLButtonElement | null
-    forgotPasswordBtn?.addEventListener('click', () => {
-      this.messageManager.info('Fale com a equipe pelo suporte para recuperar o acesso.')
-    })
+    // Removido: opção de esqueci minha senha e listener associado
 
     PasswordToggle.setupAll()
     this.setupPasswordConfirmationValidation()

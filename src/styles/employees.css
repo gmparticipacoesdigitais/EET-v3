@@ -431,10 +431,17 @@
     background: rgba(17, 24, 39, 0.78);
     border-color: rgba(99, 102, 241, 0.25);
   }
+  /* Improve contrast for headings and labels on dark cards */
+  .employee-month__heading h4 { color: #e5e7eb; }
+  .employee-month__heading span { color: #a5b4fc; }
+  .employee-month__grid h5 { color: #e2e8f0; }
 
   .employee-month__grid ul {
     color: #cbd5f5;
   }
+
+  .employee-month__total,
+  .employee-month footer { color: #f8fafc; }
 
   .toolbar-note {
     color: rgba(203, 213, 225, 0.7);
