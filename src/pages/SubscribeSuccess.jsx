@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../auth/AuthContext'
+import supabase from '../lib/supabase'
 
 export default function SubscribeSuccess() {
   const { user } = useAuth()
@@ -9,7 +10,8 @@ export default function SubscribeSuccess() {
   useEffect(() => {
     const run = async () => {
       try {
-        const idToken = await user.getIdToken()
+        const { data } = await supabase.auth.getSession()
+        const idToken = data?.session?.access_token
         const base = import.meta.env.VITE_PUBLIC_BASE_URL || ''
         const res = await fetch(`${base}/api/bootstrap`, { headers: { Authorization: `Bearer ${idToken}` } })
         const data = await res.json().catch(() => ({}))
