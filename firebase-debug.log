@@ -1,0 +1,273 @@
+[debug] [2025-09-05T21:27:04.954Z] ----------------------------------------------------------------------
+[debug] [2025-09-05T21:27:04.984Z] Command:       /usr/local/bin/node /Users/gustavobarros/.npm/_npx/ba4f1959e38407b5/node_modules/.bin/firebase init dataconnect
+[debug] [2025-09-05T21:27:04.985Z] CLI Version:   14.15.2
+[debug] [2025-09-05T21:27:04.985Z] Platform:      darwin
+[debug] [2025-09-05T21:27:04.985Z] Node Version:  v22.13.1
+[debug] [2025-09-05T21:27:04.986Z] Time:          Fri Sep 05 2025 18:27:04 GMT-0300 (Brasilia Standard Time)
+[debug] [2025-09-05T21:27:04.987Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-09-05T21:27:05.010Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-09-05T21:27:06.429Z] Object "/emulators/firestore" in "firebase.json" has unknown property: {"additionalProperty":"rules"}
+[debug] [2025-09-05T21:27:06.443Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-09-05T21:27:06.445Z] > authorizing via signed-in user (gmparticipacoes@gmail.com)
+[debug] [2025-09-05T21:27:06.446Z] Object "/emulators/firestore" in "firebase.json" has unknown property: {"additionalProperty":"rules"}
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/gustavobarros/Desktop/estimativa-de-encargos-trabalhistas-v2
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-09-05T21:27:06.452Z] Using project from CLI flag: calculadora-trabalhista-53b94
+[debug] [2025-09-05T21:27:06.453Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:06.453Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:06.454Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 [none]
+[debug] [2025-09-05T21:27:06.972Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-09-05T21:27:06.972Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-09-05T21:27:07.117Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 200
+[debug] [2025-09-05T21:27:07.117Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 {"projectId":"calculadora-trabalhista-53b94","projectNumber":"756605231751","displayName":"Calculadora Trabalhista","name":"projects/calculadora-trabalhista-53b94","resources":{"hostingSite":"calculadora-trabalhista-53b94","realtimeDatabaseInstance":"calculadora-trabalhista-53b94-default-rtdb"},"state":"ACTIVE","etag":"1_7eef9535-9e4e-416d-a2b7-1045d94e3738"}
+[info] i  Using project calculadora-trabalhista-53b94 (Calculadora Trabalhista) 
+[info] 
+=== Dataconnect Setup
+[debug] [2025-09-05T21:27:07.125Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:07.128Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:07.128Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo [none]
+[debug] [2025-09-05T21:27:08.555Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo 200
+[debug] [2025-09-05T21:27:08.555Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo {"name":"projects/calculadora-trabalhista-53b94/billingInfo","projectId":"calculadora-trabalhista-53b94","billingAccountName":"","billingEnabled":false}
+[info] i  dataconnect: ensuring required API firebasedataconnect.googleapis.com is enabled... 
+[debug] [2025-09-05T21:27:08.571Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:08.571Z] Checked if tokens are valid: true, expires at: 1757110524479
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2025-09-05T21:27:08.572Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:08.572Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:08.573Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-09-05T21:27:08.574Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/calculadora-trabalhista-53b94
+[debug] [2025-09-05T21:27:08.584Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/sqladmin.googleapis.com [none]
+[debug] [2025-09-05T21:27:08.585Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/sqladmin.googleapis.com x-goog-quota-user=projects/calculadora-trabalhista-53b94
+[debug] [2025-09-05T21:27:09.874Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/sqladmin.googleapis.com 200
+[debug] [2025-09-05T21:27:09.875Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/sqladmin.googleapis.com [omitted]
+[warn] ⚠  dataconnect: missing required API sqladmin.googleapis.com. Enabling now... 
+[debug] [2025-09-05T21:27:09.880Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:09.880Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:09.880Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/sqladmin.googleapis.com:enable [none]
+[debug] [2025-09-05T21:27:09.880Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/sqladmin.googleapis.com:enable x-goog-quota-user=projects/calculadora-trabalhista-53b94
+[debug] [2025-09-05T21:27:09.991Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-09-05T21:27:09.992Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/firebasedataconnect.googleapis.com [omitted]
+[warn] ⚠  dataconnect: missing required API firebasedataconnect.googleapis.com. Enabling now... 
+[debug] [2025-09-05T21:27:09.992Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:09.992Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:09.992Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/firebasedataconnect.googleapis.com:enable [none]
+[debug] [2025-09-05T21:27:09.992Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/firebasedataconnect.googleapis.com:enable x-goog-quota-user=projects/calculadora-trabalhista-53b94
+[debug] [2025-09-05T21:27:10.832Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/firebasedataconnect.googleapis.com:enable 200
+[debug] [2025-09-05T21:27:10.833Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/firebasedataconnect.googleapis.com:enable [omitted]
+[debug] [2025-09-05T21:27:11.328Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/sqladmin.googleapis.com:enable 200
+[debug] [2025-09-05T21:27:11.328Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/calculadora-trabalhista-53b94/services/sqladmin.googleapis.com:enable [omitted]
+[debug] [2025-09-05T21:27:15.169Z] ----------------------------------------------------------------------
+[debug] [2025-09-05T21:27:15.176Z] Command:       /usr/local/bin/node /Users/gustavobarros/.npm/_npx/ba4f1959e38407b5/node_modules/.bin/firebase init dataconnect --project calculadora-trabalhista-53b94
+[debug] [2025-09-05T21:27:15.179Z] CLI Version:   14.15.2
+[debug] [2025-09-05T21:27:15.179Z] Platform:      darwin
+[debug] [2025-09-05T21:27:15.180Z] Node Version:  v22.13.1
+[debug] [2025-09-05T21:27:15.181Z] Time:          Fri Sep 05 2025 18:27:15 GMT-0300 (Brasilia Standard Time)
+[debug] [2025-09-05T21:27:15.181Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-09-05T21:27:15.678Z] Object "/emulators/firestore" in "firebase.json" has unknown property: {"additionalProperty":"rules"}
+[debug] [2025-09-05T21:27:15.685Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-09-05T21:27:15.687Z] > authorizing via signed-in user (gmparticipacoes@gmail.com)
+[debug] [2025-09-05T21:27:15.688Z] Object "/emulators/firestore" in "firebase.json" has unknown property: {"additionalProperty":"rules"}
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/gustavobarros/Desktop/estimativa-de-encargos-trabalhistas-v2
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-09-05T21:27:15.701Z] Using project from CLI flag: calculadora-trabalhista-53b94
+[debug] [2025-09-05T21:27:15.709Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:15.709Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:15.712Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 [none]
+[debug] [2025-09-05T21:27:16.533Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 200
+[debug] [2025-09-05T21:27:16.535Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 {"projectId":"calculadora-trabalhista-53b94","projectNumber":"756605231751","displayName":"Calculadora Trabalhista","name":"projects/calculadora-trabalhista-53b94","resources":{"hostingSite":"calculadora-trabalhista-53b94","realtimeDatabaseInstance":"calculadora-trabalhista-53b94-default-rtdb"},"state":"ACTIVE","etag":"1_7eef9535-9e4e-416d-a2b7-1045d94e3738"}
+[info] i  Using project calculadora-trabalhista-53b94 (Calculadora Trabalhista) 
+[info] 
+=== Dataconnect Setup
+[debug] [2025-09-05T21:27:16.603Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:16.604Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:16.604Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo [none]
+[debug] [2025-09-05T21:27:17.905Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo 200
+[debug] [2025-09-05T21:27:17.905Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo {"name":"projects/calculadora-trabalhista-53b94/billingInfo","projectId":"calculadora-trabalhista-53b94","billingAccountName":"","billingEnabled":false}
+[info] i  dataconnect: ensuring required API firebasedataconnect.googleapis.com is enabled... 
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2025-09-05T21:27:17.909Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:17.909Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:17.909Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services [none]
+[debug] [2025-09-05T21:27:19.412Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services 200
+[debug] [2025-09-05T21:27:19.413Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services {}
+[info] i  Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[debug] [2025-09-05T21:27:21.339Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:21.339Z] Checked if tokens are valid: true, expires at: 1757110524479
+[debug] [2025-09-05T21:27:21.339Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services [none]
+[debug] [2025-09-05T21:27:22.706Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services 200
+[debug] [2025-09-05T21:27:22.707Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services {}
+[info] i  Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[debug] [2025-09-05T22:26:00.681Z] Error: read EIO
+    at TTY.onStreamRead (node:internal/stream_base_commons:216:20)
+    at TTY.callbackTrampoline (node:internal/async_hooks:130:17)
+[debug] [2025-09-05T22:26:00.681Z] Error: read EIO
+    at TTY.onStreamRead (node:internal/stream_base_commons:216:20)
+    at TTY.callbackTrampoline (node:internal/async_hooks:130:17)
+[debug] [2025-09-07T00:30:20.194Z] ----------------------------------------------------------------------
+[debug] [2025-09-07T00:30:20.195Z] Command:       /usr/local/bin/node /Users/gustavobarros/.npm/_npx/ba4f1959e38407b5/node_modules/.bin/firebase init dataconnect --project calculadora-trabalhista-53b94
+[debug] [2025-09-07T00:30:20.195Z] CLI Version:   14.15.2
+[debug] [2025-09-07T00:30:20.195Z] Platform:      darwin
+[debug] [2025-09-07T00:30:20.195Z] Node Version:  v22.13.1
+[debug] [2025-09-07T00:30:20.196Z] Time:          Sat Sep 06 2025 21:30:20 GMT-0300 (Brasilia Standard Time)
+[debug] [2025-09-07T00:30:20.196Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-09-07T00:30:20.280Z] Object "/emulators/firestore" in "firebase.json" has unknown property: {"additionalProperty":"rules"}
+[debug] [2025-09-07T00:30:20.282Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-09-07T00:30:20.282Z] > authorizing via signed-in user (gmparticipacoes@gmail.com)
+[debug] [2025-09-07T00:30:20.282Z] Object "/emulators/firestore" in "firebase.json" has unknown property: {"additionalProperty":"rules"}
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/gustavobarros/Desktop/estimativa-de-encargos-trabalhistas-v2
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-09-07T00:30:20.283Z] Using project from CLI flag: calculadora-trabalhista-53b94
+[debug] [2025-09-07T00:30:20.283Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:20.284Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:20.284Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 [none]
+[debug] [2025-09-07T00:30:20.853Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 200
+[debug] [2025-09-07T00:30:20.854Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 {"projectId":"calculadora-trabalhista-53b94","projectNumber":"756605231751","displayName":"Calculadora Trabalhista","name":"projects/calculadora-trabalhista-53b94","resources":{"hostingSite":"calculadora-trabalhista-53b94","realtimeDatabaseInstance":"calculadora-trabalhista-53b94-default-rtdb"},"state":"ACTIVE","etag":"1_7eef9535-9e4e-416d-a2b7-1045d94e3738"}
+[info] i  Using project calculadora-trabalhista-53b94 (Calculadora Trabalhista) 
+[info] 
+=== Dataconnect Setup
+[debug] [2025-09-07T00:30:20.864Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:20.864Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:20.865Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo [none]
+[debug] [2025-09-07T00:30:22.033Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo 200
+[debug] [2025-09-07T00:30:22.033Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo {"name":"projects/calculadora-trabalhista-53b94/billingInfo","projectId":"calculadora-trabalhista-53b94","billingAccountName":"","billingEnabled":false}
+[info] i  dataconnect: ensuring required API firebasedataconnect.googleapis.com is enabled... 
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2025-09-07T00:30:22.034Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:22.035Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:22.035Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services [none]
+[debug] [2025-09-07T00:30:23.404Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services 200
+[debug] [2025-09-07T00:30:23.405Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services {"services":[{"name":"projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet","createTime":"2025-09-07T00:27:54.282720598Z","updateTime":"2025-09-07T00:27:55.525260886Z","uid":"3a3df96a-411a-4e2a-9d6f-a9987d8b0367","reconciling":false,"etag":"RKqG--hlk7JU-EDH56_GyrO9yw4XOj7Vysam99dYnqE"}]}
+[debug] [2025-09-07T00:30:23.406Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:23.406Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:23.406Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet/schemas/main [none]
+[debug] [2025-09-07T00:30:24.322Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet/schemas/main 200
+[debug] [2025-09-07T00:30:24.322Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet/schemas/main {"name":"projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet/schemas/main","createTime":"2025-09-07T00:28:05.887344369Z","updateTime":"2025-09-07T00:28:06.159117086Z","source":{"files":[{"path":"schema.gql","content":"type User @table {\n  displayName: String!\n  createdAt: Timestamp!\n  email: String\n  photoUrl: String\n}\n\ntype Movie @table {\n  title: String!\n  year: Int!\n  createdAt: Timestamp!\n  summary: String\n  genres: [String]\n  runtime: Int\n}\n\ntype Watch @table {\n  user: User!\n  movie: Movie!\n  watchDate: Date!\n  createdAt: Timestamp!\n  location: String\n}\n\ntype Review @table {\n  watch: Watch!\n  movie: Movie!\n  user: User!\n  rating: Int!\n  createdAt: Timestamp!\n  updatedAt: Timestamp!\n  isPublic: Boolean!\n  reviewText: String\n}\n\ntype MovieList @table {\n  user: User!\n  name: String!\n  isPublic: Boolean!\n  createdAt: Timestamp!\n  updatedAt: Timestamp!\n  description: String\n}\n\ntype MovieListEntry @table(key: [\"movieList\", \"movie\"]) {\n  movieList: MovieList!\n  movie: Movie!\n  position: Int!\n  note: String\n}"}]},"uid":"f1df5b23-2375-4006-9553-9193ad3fc2e5","reconciling":false,"datasources":[{"postgresql":{"ephemeral":true}}],"etag":"9hBnCOhGAPVWcQajWVO4CDFaF1KUqKjWNVitaP23zXE"}
+[debug] [2025-09-07T00:30:45.774Z] ----------------------------------------------------------------------
+[debug] [2025-09-07T00:30:45.775Z] Command:       /usr/local/bin/node /Users/gustavobarros/.npm/_npx/ba4f1959e38407b5/node_modules/.bin/firebase init dataconnect --project calculadora-trabalhista-53b94
+[debug] [2025-09-07T00:30:45.775Z] CLI Version:   14.15.2
+[debug] [2025-09-07T00:30:45.775Z] Platform:      darwin
+[debug] [2025-09-07T00:30:45.775Z] Node Version:  v22.13.1
+[debug] [2025-09-07T00:30:45.775Z] Time:          Sat Sep 06 2025 21:30:45 GMT-0300 (Brasilia Standard Time)
+[debug] [2025-09-07T00:30:45.775Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-09-07T00:30:45.861Z] Object "/emulators/firestore" in "firebase.json" has unknown property: {"additionalProperty":"rules"}
+[debug] [2025-09-07T00:30:45.863Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-09-07T00:30:45.863Z] > authorizing via signed-in user (gmparticipacoes@gmail.com)
+[debug] [2025-09-07T00:30:45.863Z] Object "/emulators/firestore" in "firebase.json" has unknown property: {"additionalProperty":"rules"}
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/gustavobarros/Desktop/estimativa-de-encargos-trabalhistas-v2
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-09-07T00:30:45.863Z] Using project from CLI flag: calculadora-trabalhista-53b94
+[debug] [2025-09-07T00:30:45.864Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:45.864Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:45.864Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 [none]
+[debug] [2025-09-07T00:30:46.442Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 200
+[debug] [2025-09-07T00:30:46.443Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/calculadora-trabalhista-53b94 {"projectId":"calculadora-trabalhista-53b94","projectNumber":"756605231751","displayName":"Calculadora Trabalhista","name":"projects/calculadora-trabalhista-53b94","resources":{"hostingSite":"calculadora-trabalhista-53b94","realtimeDatabaseInstance":"calculadora-trabalhista-53b94-default-rtdb"},"state":"ACTIVE","etag":"1_7eef9535-9e4e-416d-a2b7-1045d94e3738"}
+[info] i  Using project calculadora-trabalhista-53b94 (Calculadora Trabalhista) 
+[info] 
+=== Dataconnect Setup
+[debug] [2025-09-07T00:30:46.454Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:46.454Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:46.454Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo [none]
+[debug] [2025-09-07T00:30:47.628Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo 200
+[debug] [2025-09-07T00:30:47.628Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/calculadora-trabalhista-53b94/billingInfo {"name":"projects/calculadora-trabalhista-53b94/billingInfo","projectId":"calculadora-trabalhista-53b94","billingAccountName":"","billingEnabled":false}
+[info] i  dataconnect: ensuring required API firebasedataconnect.googleapis.com is enabled... 
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2025-09-07T00:30:47.631Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:47.631Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:47.631Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services [none]
+[debug] [2025-09-07T00:30:48.971Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services 200
+[debug] [2025-09-07T00:30:48.971Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/-/services {"services":[{"name":"projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet","createTime":"2025-09-07T00:27:54.282720598Z","updateTime":"2025-09-07T00:27:55.525260886Z","uid":"3a3df96a-411a-4e2a-9d6f-a9987d8b0367","reconciling":false,"etag":"RKqG--hlk7JU-EDH56_GyrO9yw4XOj7Vysam99dYnqE"}]}
+[debug] [2025-09-07T00:30:48.971Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:48.971Z] Checked if tokens are valid: true, expires at: 1757208187064
+[debug] [2025-09-07T00:30:48.971Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet/schemas/main [none]
+[debug] [2025-09-07T00:30:49.850Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet/schemas/main 200
+[debug] [2025-09-07T00:30:49.850Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet/schemas/main {"name":"projects/calculadora-trabalhista-53b94/locations/us-central1/services/eet/schemas/main","createTime":"2025-09-07T00:28:05.887344369Z","updateTime":"2025-09-07T00:28:06.159117086Z","source":{"files":[{"path":"schema.gql","content":"type User @table {\n  displayName: String!\n  createdAt: Timestamp!\n  email: String\n  photoUrl: String\n}\n\ntype Movie @table {\n  title: String!\n  year: Int!\n  createdAt: Timestamp!\n  summary: String\n  genres: [String]\n  runtime: Int\n}\n\ntype Watch @table {\n  user: User!\n  movie: Movie!\n  watchDate: Date!\n  createdAt: Timestamp!\n  location: String\n}\n\ntype Review @table {\n  watch: Watch!\n  movie: Movie!\n  user: User!\n  rating: Int!\n  createdAt: Timestamp!\n  updatedAt: Timestamp!\n  isPublic: Boolean!\n  reviewText: String\n}\n\ntype MovieList @table {\n  user: User!\n  name: String!\n  isPublic: Boolean!\n  createdAt: Timestamp!\n  updatedAt: Timestamp!\n  description: String\n}\n\ntype MovieListEntry @table(key: [\"movieList\", \"movie\"]) {\n  movieList: MovieList!\n  movie: Movie!\n  position: Int!\n  note: String\n}"}]},"uid":"f1df5b23-2375-4006-9553-9193ad3fc2e5","reconciling":false,"datasources":[{"postgresql":{"ephemeral":true}}],"etag":"9hBnCOhGAPVWcQajWVO4CDFaF1KUqKjWNVitaP23zXE"}
+[debug] [2025-09-07T01:05:48.840Z] Error: read EIO
+    at TTY.onStreamRead (node:internal/stream_base_commons:216:20)
+    at TTY.callbackTrampoline (node:internal/async_hooks:130:17)
+[debug] [2025-09-07T01:05:48.839Z] Error: read EIO
+    at TTY.onStreamRead (node:internal/stream_base_commons:216:20)
+    at TTY.callbackTrampoline (node:internal/async_hooks:130:17)
