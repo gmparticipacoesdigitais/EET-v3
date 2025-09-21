@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() { return request.auth != null; }
+    function tenant() { return request.auth.token.tenantId; }
+    function hasRole(r) { return request.auth.token.roles[r] == true; }
+
+    match /tenants/{tId} {
+      allow read: if isSignedIn() && tId == tenant();
+
+      match /users/{uid} {
+        allow read: if isSignedIn() && tId == tenant();
+        allow write: if isSignedIn() && tId == tenant() && (hasRole('OWNER') || hasRole('ADMIN') || (uid == request.auth.uid));
+      }
+
+      match /employees/{doc} {
+        allow read: if isSignedIn() && tId == tenant();
+        allow create, update: if isSignedIn() && tId == tenant() && (hasRole('OWNER') || hasRole('ADMIN'));
+        allow delete: if isSignedIn() && tId == tenant() && hasRole('OWNER');
+      }
+
+      match /calculations/{doc} {
+        allow read: if isSignedIn() && tId == tenant();
+        allow create: if isSignedIn() && tId == tenant() && (hasRole('OWNER') || hasRole('ADMIN') || hasRole('ANALYST'));
+        allow update, delete: if false; // histórico imutável
+      }
+
+      match /auditLogs/{doc} {
+        allow read: if isSignedIn() && tId == tenant() && (hasRole('OWNER') || hasRole('ADMIN'));
+        allow write: if false; // apenas via backend/Functions com Admin SDK
+      }
+    }
+  }
+}
+
