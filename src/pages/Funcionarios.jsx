@@ -410,6 +410,12 @@ export default function FuncionariosPage() {
                             <li>Férias: {formatCurrency(relatorio.provisoes.ferias)}</li>
                             <li>1/3 Férias: {formatCurrency(relatorio.provisoes.tercoFerias)}</li>
                             <li>FGTS sobre provisões: {formatCurrency(relatorio.provisoes.fgtsProvisoes)}</li>
+                            {typeof relatorio.encargosProvisoes === 'number' ? (
+                              <li>Encargos sobre provisões: {formatCurrency(relatorio.encargosProvisoes)}</li>
+                            ) : null}
+                            {relatorio.multaFgts32 ? (
+                              <li>Multa FGTS provisionada (3,2%): {formatCurrency(relatorio.multaFgts32)}</li>
+                            ) : null}
                             <li className="employee-month__total">Total: {formatCurrency(relatorio.provisoes.total)}</li>
                           </ul>
                         </div>
